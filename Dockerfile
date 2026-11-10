@@ -1,6 +1,6 @@
 FROM php:8.3-apache
 RUN docker-php-ext-install mysqli pdo_mysql \
- && a2enmod rewrite headers \
+ && (a2dismod -f mpm_event mpm_worker || true) && a2enmod mpm_prefork rewrite headers \
  && apt-get update && apt-get install -y --no-install-recommends default-mysql-client && rm -rf /var/lib/apt/lists/*
 ENV APACHE_DOCUMENT_ROOT=/var/www/html
 WORKDIR /var/www/html
