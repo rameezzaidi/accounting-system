@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Block direct access to application internals
+RewriteRule ^(application|system|database)/ - [F,L]
+
+# Clean URLs (works with XAMPP / cPanel). If the app lives in a sub-folder
+# and routing fails, set RewriteBase /your-folder/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]

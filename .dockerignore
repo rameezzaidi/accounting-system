@@ -1,0 +1,5 @@
+database/*.sql.bak
+.git
+*.zip
+application/logs/*.php
+application/sessions/*
